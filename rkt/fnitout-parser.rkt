@@ -27,7 +27,8 @@
 
 (define (parse-fnitout f-stx)
   (syntax-parse f-stx
-    [pattern-stx (parse-pattern (syntax->list #'pattern-stx))]))
+    [pattern-stx
+     (parse-pattern (syntax->list #'pattern-stx))]))
 
 (define (parse-pattern pattern-stx)
   (syntax-parse pattern-stx
@@ -40,10 +41,10 @@
 (define (parse-statement statement-stx)
   (syntax-parse statement-stx
     [(_)
-     (void)] ;; empty line
+     (void)]
     [(_ command-stx)
-     (parse-command #'command-stx "")] ;; command without comment
+     (parse-command #'command-stx "")]
     [(_ command-stx comment-stx)
-     (parse-command #'command-stx (cadr (syntax->datum #'comment-stx)))])) ;; command with comment
+     (parse-command #'command-stx (cadr (syntax->datum #'comment-stx)))]))
 
 ;; end

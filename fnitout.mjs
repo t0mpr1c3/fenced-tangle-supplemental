@@ -331,12 +331,13 @@ export function validate(instructions) {
 
 			if (instruction.op === 'tuck') {
 				checkYarns(); //make sure carriers are ready
-				//increment loop count at location:
-				if (instruction.yarns.length > 0) {
-					const n = instruction.needle.toString();
-					if (!(n in state.loops)) state.loops[n] = instruction.yarns.length;
-					else state.loops[n] += 1;
+				if (instruction.yarns.length !== 1) {
+        				throw new ValidationError('Tuck instruction should specify exactly 1 yarn');
 				}
+				//increment loop count at location:
+				const n = instruction.needle.toString();
+				if (!(n in state.loops)) state.loops[n] = 1;
+				else state.loops[n] += 1;
 				setAttachments(); //update attached loops
 				setYarns(); //move carriers
 			} else if (instruction.op === 'knit') {
