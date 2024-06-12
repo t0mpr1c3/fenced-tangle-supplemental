@@ -66,36 +66,36 @@
      "knit + f.0 1 (2,1)(1,2.0)\n"
      "split - f.0 b.0 1 (2, 2.0) (1, 1.0)\n"))
    '(#s(Nop
-        ";a")
+        ";a" ())
      #s(Nop
-        "")
+        "" ())
      #s(Nop
-        ";b")
+        ";b" ())
      #s(Rack 1
-             "")
+             "" ())
      #s(Drop #s(Needle f 888)
-             "")
+             "" ())
      #s(Xfer #s(Needle f 0)
              #s(Needle b 1)
-             "")
+             "" ())
      #s(In #s(Direction +)
            #s(Needle b -1)
            #s(Carrier 6)
-           "")
+           "" ())
      #s(Out #s(Direction +)
             #s(Needle f 1)
             #s(Carrier 999)
-            "")
+            "" ())
      #s(Miss #s(Direction -)
              #s(Needle b 1)
              #s(Carrier 2)
-             "")
+             "" ())
      #s(Tuck #s(Direction +)
              #s(Needle f 0)
              #s(Length 1)
              #s(Yarn #s(Carrier 1)
                      #s(Length 1))
-             "")
+             "" ())
      #s(Knit #s(Direction +)
              #s(Needle f 0)
              #s(Length 1)
@@ -103,7 +103,7 @@
                       #s(Length 2.0))
               #s(Yarn #s(Carrier 2)
                       #s(Length 1)))
-             "")
+             "" ())
      #s(Split #s(Direction -)
               #s(Needle f 0)
               #s(Needle b 0)
@@ -112,7 +112,7 @@
                        #s(Length 1.0))
                #s(Yarn #s(Carrier 2)
                        #s(Length 2.0)))
-              "")))
+              "" ())))
 
   (check-equal?
    (merge-rack
@@ -139,10 +139,10 @@
       "xfer b.0 f.1\n"
       "xfer f.1 b.0\n")))
    '(#s(Rack 1
-             "")
+             "" ())
      #s(Xfer #s(Needle f 1)
              #s(Needle b 0)
-             "")))
+             "" ())))
 
   (check-equal?
    (slide
@@ -152,16 +152,16 @@
       "tuck + b.0 1.0 (5, 1.0)\n"
       "xfer b.0 f.1\n")))
    '(#s(Rack 1
-             "")
+             "" ())
      #s(Tuck #s(Direction +)
              #s(Needle f 1)
              #s(Length 1.0)
              #s(Yarn #s(Carrier 5)
                      #s(Length 1.0))
-             "")
+             "" ())
      #s(Xfer #s(Needle b 0)
              #s(Needle f 1)
-             "")))
+             "" ())))
 
   ;; end of submodule
   )
